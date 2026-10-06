@@ -1,0 +1,1 @@
+Download with `python -m src.download`. Source: TidyTuesday 2020-02-11 mirror of António, Almeida and Nunes (2019), DOI 10.1016/j.dib.2018.11.126. Data is excluded from git. See main README for provenance and scope.

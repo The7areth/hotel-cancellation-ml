@@ -1,0 +1,304 @@
+{
+  "source_sha256": "7c2ae42a7353905ea136e5c2287f17c92c5435826598bfbb8491c6f0c7b1fc06",
+  "audit": {
+    "raw_rows": 119390,
+    "excluded_zero_guests_or_zero_nights": 825,
+    "exact_duplicate_rows": 31994,
+    "duplicates_policy": "Retained: no booking ID proves that identical rows are errors; dependence is a limitation."
+  },
+  "prediction_scope": "Retrospective arrival-cohort study; snapshot data does not validate booking-time deployment.",
+  "features": [
+    "lead_time",
+    "arrival_month",
+    "stays_in_weekend_nights",
+    "stays_in_week_nights",
+    "adults",
+    "children",
+    "babies",
+    "is_repeated_guest",
+    "total_nights",
+    "total_guests",
+    "hotel",
+    "meal",
+    "market_segment",
+    "distribution_channel",
+    "reserved_room_type",
+    "customer_type"
+  ],
+  "excluded_features": [
+    "adr",
+    "agent",
+    "assigned_room_type",
+    "booking_changes",
+    "company",
+    "country",
+    "days_in_waiting_list",
+    "deposit_type",
+    "is_canceled",
+    "previous_bookings_not_canceled",
+    "previous_cancellations",
+    "required_car_parking_spaces",
+    "reservation_status",
+    "reservation_status_date",
+    "total_of_special_requests"
+  ],
+  "selection_metric": "Validation average precision",
+  "splits": {
+    "train": {
+      "n": 63293,
+      "cancellation_rate": 0.36187256094670817,
+      "arrival_min": "2015-07-01",
+      "arrival_max": "2016-09-30"
+    },
+    "validation": {
+      "n": 13969,
+      "cancellation_rate": 0.39673562889254776,
+      "arrival_min": "2016-10-01",
+      "arrival_max": "2016-12-31"
+    },
+    "calibration": {
+      "n": 7491,
+      "cancellation_rate": 0.3476171405686824,
+      "arrival_min": "2017-01-01",
+      "arrival_max": "2017-02-28"
+    },
+    "test": {
+      "n": 32718,
+      "cancellation_rate": 0.4011858915581637,
+      "arrival_min": "2017-03-01",
+      "arrival_max": "2017-08-31"
+    }
+  },
+  "outcomes_purged_at_boundaries": 1094,
+  "validation_models": {
+    "dummy": {
+      "accuracy": 0.6032643711074522,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.5,
+      "average_precision": 0.39673562889254776,
+      "brier": 0.2405519031663786,
+      "confusion_matrix": [
+        [
+          8427,
+          0
+        ],
+        [
+          5542,
+          0
+        ]
+      ],
+      "fit_seconds": 0.18
+    },
+    "logistic": {
+      "accuracy": 0.7029851814732623,
+      "precision": 0.7013587742122,
+      "recall": 0.43774810537712017,
+      "f1": 0.5390512165314965,
+      "roc_auc": 0.7306586954333044,
+      "average_precision": 0.6937004446982826,
+      "brier": 0.19659973864792551,
+      "confusion_matrix": [
+        [
+          7394,
+          1033
+        ],
+        [
+          3116,
+          2426
+        ]
+      ],
+      "fit_seconds": 0.41
+    },
+    "random_forest": {
+      "accuracy": 0.7011955043310187,
+      "precision": 0.8048128342245989,
+      "recall": 0.3258751353302057,
+      "f1": 0.46390958129976884,
+      "roc_auc": 0.7720735818608512,
+      "average_precision": 0.7280648043102083,
+      "brier": 0.18404080663374311,
+      "confusion_matrix": [
+        [
+          7989,
+          438
+        ],
+        [
+          3736,
+          1806
+        ]
+      ],
+      "fit_seconds": 1.63
+    },
+    "hist_gradient_boosting": {
+      "accuracy": 0.7152981602118977,
+      "precision": 0.7299441669115486,
+      "recall": 0.44821364128473473,
+      "f1": 0.55539407490218,
+      "roc_auc": 0.7676310939168609,
+      "average_precision": 0.7196033456331725,
+      "brier": 0.18901071376922546,
+      "confusion_matrix": [
+        [
+          7508,
+          919
+        ],
+        [
+          3058,
+          2484
+        ]
+      ],
+      "fit_seconds": 2.03
+    }
+  },
+  "selected_model": "random_forest",
+  "threshold": 0.21000000000000002,
+  "cost_assumption": {
+    "false_negative": 5,
+    "false_positive": 1,
+    "unit": "illustrative penalty units"
+  },
+  "threshold_selection": "Calibration cohort; same cohort used for sigmoid fit. Final test remains untouched.",
+  "test_calibrated": {
+    "accuracy": 0.5953909163151782,
+    "precision": 0.49767074286665003,
+    "recall": 0.9115495962212403,
+    "f1": 0.6438334050796384,
+    "roc_auc": 0.7663307532632642,
+    "average_precision": 0.7162485267777119,
+    "brier": 0.1896169677699248,
+    "confusion_matrix": [
+      [
+        7515,
+        12077
+      ],
+      [
+        1161,
+        11965
+      ]
+    ]
+  },
+  "test_at_0_5": {
+    "accuracy": 0.6901094198911913,
+    "precision": 0.6084998183799492,
+    "recall": 0.6381228096906902,
+    "f1": 0.6229593544308505,
+    "roc_auc": 0.7663307532632642,
+    "average_precision": 0.7162485267777119,
+    "brier": 0.1896169677699248,
+    "confusion_matrix": [
+      [
+        14203,
+        5389
+      ],
+      [
+        4750,
+        8376
+      ]
+    ]
+  },
+  "test_uncalibrated": {
+    "accuracy": 0.6888257228436946,
+    "precision": 0.8040470782572785,
+    "recall": 0.2966631113819899,
+    "f1": 0.43341310033947356,
+    "roc_auc": 0.7663307532632642,
+    "average_precision": 0.7162485267777119,
+    "brier": 0.1878287278150273,
+    "confusion_matrix": [
+      [
+        18643,
+        949
+      ],
+      [
+        9232,
+        3894
+      ]
+    ]
+  },
+  "test_dummy": {
+    "accuracy": 0.5988141084418362,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "roc_auc": 0.5,
+    "average_precision": 0.4011858915581637,
+    "brier": 0.2417813099366106,
+    "confusion_matrix": [
+      [
+        19592,
+        0
+      ],
+      [
+        13126,
+        0
+      ]
+    ]
+  },
+  "test_by_hotel": {
+    "Resort Hotel": {
+      "accuracy": 0.6589911210849839,
+      "precision": 0.49689551179705516,
+      "recall": 0.8095375722543353,
+      "f1": 0.6158074090359459,
+      "roc_auc": 0.7643994620675916,
+      "average_precision": 0.6282861024419268,
+      "brier": 0.17953954623916132,
+      "confusion_matrix": [
+        [
+          3953,
+          2836
+        ],
+        [
+          659,
+          2801
+        ]
+      ]
+    },
+    "City Hotel": {
+      "accuracy": 0.56638034625484,
+      "precision": 0.49790817712578106,
+      "recall": 0.9480653838195737,
+      "f1": 0.65291582059777,
+      "roc_auc": 0.7637477841286131,
+      "average_precision": 0.7439401586362637,
+      "brier": 0.194213678494425,
+      "confusion_matrix": [
+        [
+          3562,
+          9241
+        ],
+        [
+          502,
+          9164
+        ]
+      ]
+    }
+  },
+  "test_day_cluster_bootstrap_95": {
+    "accuracy": [
+      0.5826401894754064,
+      0.6101243881975166
+    ],
+    "roc_auc": [
+      0.7528465338367191,
+      0.782781749942135
+    ],
+    "average_precision": [
+      0.6822157792657288,
+      0.7519127329901066
+    ]
+  },
+  "importance_note": "Validation permutation importance on engineered columns; correlated raw/derived features can dilute importance; associations are not causal.",
+  "data_summary": {
+    "City Hotel": {
+      "count": 78899,
+      "mean": 0.4190927641668462
+    },
+    "Resort Hotel": {
+      "count": 39666,
+      "mean": 0.28008874098724346
+    }
+  }
+}

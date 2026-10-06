@@ -1,0 +1,1 @@
+Hotel cancellation ML with chronological evaluation, logistic/forest/boosting baselines, probability calibration, cost-sensitive review thresholds, and a FastAPI demo.
